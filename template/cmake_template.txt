@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION {{VERSION}})
+project({{PROJECT_NAME}})
+
+set(CMAKE_CXX_STANDARD {{CXX_STANDARD}})
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+add_executable({{PROJECT_NAME}}
+    {{SOURCE_FILES}}
+)
+
+# Optional includes and links
+# include_directories({{INCLUDE_DIRS}})
+# target_link_libraries({{PROJECT_NAME}} {{LIBRARIES}})
+
