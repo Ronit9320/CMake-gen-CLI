@@ -30,7 +30,8 @@ bool writeToFile(const std::string &filePath, const std::string &content);
 void cmake_gen() {
   CMakeConfig config;
 
-  std::string templatePath = "../template/cmake_template.txt";
+  std::string templatePath =
+      "/usr/local/share/gencmake/templates/cmake_template.txt";
   if (!std::filesystem::exists(templatePath)) {
     std::cerr << "Error: Template file not found at " << templatePath
               << std::endl;
