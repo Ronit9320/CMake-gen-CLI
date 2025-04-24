@@ -22,6 +22,14 @@ void cmake_gen() {
   replacements["{{CXX_STANDARD}}"] = standard;
   replacements["{{SOURCE_FILES}}"] = src;
 
+  for (const auto &[placeholder, value] : replacements) {
+    size_t pos = 0;
+    while ((pos = cmake_template.find(placeholder, pos)) != std::string::npos) {
+      cmake_template.replace(pos, placeholder.length(), value);
+      pos += value.length();
+    }
+  }
+
   std::ofstream file("CMakeLists.txt");
   if (file.is_open()) {
     file << cmake_template;
