@@ -8,7 +8,7 @@ A minimal command‑line utility that generates a project directory pre‑popula
 
 ```bash
 git clone https://github.com/Ronit9320/CMake-gen-CLI
-cd cmakegen
+cd CMake-gen-CLI
 mkdir build && cd build
 cmake ..
 make
