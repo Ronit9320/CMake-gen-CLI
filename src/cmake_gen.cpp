@@ -17,6 +17,7 @@ struct CMakeConfig {
   std::vector<std::string> dependencies;
 };
 
+std::string getTemplatePath();
 std::string readFromFile(const std::string &filePath);
 std::string getLineInput(const std::string &question,
                          const std::string &defaultValue = "");
@@ -27,11 +28,16 @@ std::string applyTemplateReplacements(
     const std::map<std::string, std::string> &replacements);
 bool writeToFile(const std::string &filePath, const std::string &content);
 
+std::string getTemplatePath() {
+  std::filesystem::path exePath = std::filesystem::canonical("/proc/self/exe");
+  std::filesystem::path templatePath = exePath.parent_path().parent_path() / "share" / "gencmake" / "templates" / "cmake_template.txt";
+  return templatePath.string();
+}
+
 void cmake_gen() {
   CMakeConfig config;
 
-  std::string templatePath =
-      "/usr/local/share/gencmake/templates/cmake_template.txt";
+  std::string templatePath = getTemplatePath();
   if (!std::filesystem::exists(templatePath)) {
     std::cerr << "Error: Template file not found at " << templatePath
               << std::endl;
